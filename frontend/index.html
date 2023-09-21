@@ -1,22 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo Python + Typescript app</title>
   </head>
-  <body>
-    <div id="app">
-        <h1>Hello World!</h1>
-        <div class="card">
-          <button id="counter" type="button">Call Server</button>
-        </div>
+  <body class="h-full flex items-center justify-center">
+    <div class="flex flex-col gap-4 w-full max-w-md">
+        <h1 class="text-3xl">Hello World!</h1>
+        <button class="self-center btn bg-slate-100 hover:bg-slate-200 rounded-md px-4 py-2" id="callServer">Call Server</button>
 
         <span>Server says:</span>
-        <pre class="read-the-docs">
+        <pre class="block w-128 whitespace-break-spaces bg-slate-300 rounded-md p-2" id="serverResult">
 Click on the Vite logo to learn more
         </pre>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
+
+  <script>
+
+    document.getElementById('callServer').addEventListener('click', async () => {
+      try {
+        const res = await fetch('http://localhost:3001/hello')
+        document.getElementById('serverResult').innerText = `${new Date().toString()} - ${await res.text()}`
+      } catch (e) {
+        document.getElementById('serverResult').innerText = `${new Date().toString()} - ${e}`
+      }
+    })
+
+  </script>
 </html>
