@@ -11,7 +11,7 @@ function ctrl_c() {
 
 # Start the server.
 cd backend
-poetry run uvicorn main:app --port 3001 &
+poetry run uvicorn main:app --port 3001 --reload &
 PID1=$!
 cd ..
 
