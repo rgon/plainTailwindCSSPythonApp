@@ -10,8 +10,10 @@ function ctrl_c() {
 }
 
 # Start the server.
-python backend/__init__.py &
+cd backend
+poetry run uvicorn main:app --port 3001 &
 PID1=$!
+cd ..
 
 # Start the frontend.
 cd frontend
